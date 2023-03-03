@@ -9,6 +9,7 @@ import Foundation
 
 var playerhealth = 100
 var playermana = 50
+var trollhealth : Int = 100
 
 let openingstory : String = "Welcome to a world of magic 🧙🏿‍♂️\nYou have been chosen to embark on an epic journey as a young wizard  on the path to becoming a master of the arcane arts. Your adventure will take you through forests 🌲, Mountains 🗻, and dungeon 🏰, where you will face challenges, make allies, and fight enemies \nPress [Return] to continue or [N] to quit: "
 
@@ -46,6 +47,39 @@ Or.. you can choose where you want to go
 Your choice young wizard.. :
 """
 
-print(forest)
+// Forest
+let forest: String = """
+ As  you enter the forest, you feel a sense of unease wash over you. Suddenly, you hear the sound of twigs snapping behind you, you quickly spin around, and find a Troll emerging from the shadows.
+ 
+ 😈 Troll name : Jumbo Troll
+ 😈 Health : \(trollhealth)
+ 
+ Choose your action :
+ [1] Physical attack. No mana required. Deal 5pt Damage
+ [2] Meteor. use 15pt of MP. Deal 50pt of damage
+ [3] Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
+ 
+ [4] Use potion to heal wound
+ [5] Scan enemy's vital
+ [6] Flee from battle
+ 
+ Whats your choice
+ """
 
+
+
+// Player Stat
+let playerstat = """
+Player Name : \(Nama)
+HP : \(playerhealth)
+MP : \(playermana)
+Magic :
+- Physical attack. No mana required. Deal 5pt Damage
+- Meteor. use 15pt of MP. Deal 50pt of damage
+- Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
+
+Items :
+- Potion x10. Heal 20pt of your HP.
+- Elixir x5. Add 10pt of your MP
+"""
 
