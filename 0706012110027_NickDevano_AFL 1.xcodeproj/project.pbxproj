@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		040A1A3629AD9EE1003B6B27 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A3529AD9EE1003B6B27 /* main.swift */; };
+		040A1A3F29B18DEF003B6B27 /* Forest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A3E29B18DEF003B6B27 /* Forest.swift */; };
+		040A1A4129B198F3003B6B27 /* Playerstat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A4029B198F3003B6B27 /* Playerstat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		040A1A3229AD9EE1003B6B27 /* 0706012110027_NickDevano_AFL 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110027_NickDevano_AFL 1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040A1A3529AD9EE1003B6B27 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		040A1A3E29B18DEF003B6B27 /* Forest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forest.swift; sourceTree = "<group>"; };
+		040A1A4029B198F3003B6B27 /* Playerstat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playerstat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				040A1A3529AD9EE1003B6B27 /* main.swift */,
+				040A1A3E29B18DEF003B6B27 /* Forest.swift */,
+				040A1A4029B198F3003B6B27 /* Playerstat.swift */,
 			);
 			path = "0706012110027_NickDevano_AFL 1";
 			sourceTree = "<group>";
@@ -120,7 +126,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040A1A3F29B18DEF003B6B27 /* Forest.swift in Sources */,
 				040A1A3629AD9EE1003B6B27 /* main.swift in Sources */,
+				040A1A4129B198F3003B6B27 /* Playerstat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
