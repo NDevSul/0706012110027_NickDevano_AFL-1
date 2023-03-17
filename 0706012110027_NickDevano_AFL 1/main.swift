@@ -16,7 +16,7 @@ var trollattack = 10
 let creatureHealth = ["troll": 200, "golem": 1000]
 var trollHealth = creatureHealth["troll"] ?? 0
 var golemHealth = creatureHealth["golem"] ?? 0
-
+//Opening Story (Intro)
 let openingstory : String = "Welcome to a world of magic 🧙🏿‍♂️\nYou have been chosen to embark on an epic journey as a young wizard  on the path to becoming a master of the arcane arts. Your adventure will take you through forests 🌲, Mountains 🗻, and dungeon 🏰, where you will face challenges, make allies, and fight enemies \nPress [Return] to continue : "
 
 for _ in 1... {
@@ -29,6 +29,7 @@ for _ in 1... {
     }
 }
 
+//Naming Your wizard
 print("What is your name Young wizard?")
 
 var Nama: String?
@@ -47,7 +48,7 @@ if Nama == "" {
     print("Nice to meet you, \(Nama!)")
     starting()
 
-
+//Function after inputing the name
 func starting() {
     
     print("""
@@ -118,7 +119,7 @@ func forest(){
                 physicalAttack()
             }else if forestchoice == "2"
             {
-                summonMeteor()
+                summonMeteorTroll()
             }else if forestchoice == "3"{
                 trollshield()
             }else if forestchoice == "4"{
@@ -186,7 +187,7 @@ func mountain(){
                 GolemPhysicalAttack()
             }else if mountainchoice == "2"
             {
-                summonMeteor()
+                summonMeteorGolem()
             }else if mountainchoice == "3"{
                 //                golemshield()
             }else if mountainchoice == "4"{
@@ -321,17 +322,20 @@ func flee(){
         }
     }
     
-    
+    //Function for Troll Physical Attack
 func physicalAttack() {
         trollHealth -= 5
         print("You hit the troll for 5 damage!")
     }
+    
+    //Function for Golem Physical Attack
 func GolemPhysicalAttack(){
         golemHealth -= 5
         print("You hit the Golem for 5 damage!!")
     }
     
-func summonMeteor() {
+    //Function for summoning a Meteor for troll   
+func summonMeteorTroll() {
         if playermana >= 15 {
             trollHealth -= 50
             playermana -= 15
@@ -341,6 +345,18 @@ func summonMeteor() {
         }
     }
     
+     //Function for summoning a Meteor for Golem   
+    func summonMeteorGolem() {
+        if playermana >= 15 {
+            golemHealth -= 50
+            playermana -= 15
+            print("You summoned a meteor and hit the enemy for 50 damage!")
+        } else {
+            print("You don't have enough mana to use this move.")
+        }
+    }
+    
+    //Function for shield for Golem
 func golemshield() {
         if playermana >= 10 {
             print("You raise a shield and block the golem's attack!")
@@ -351,6 +367,8 @@ func golemshield() {
             print("You don't have enough mana to use this move.")
         }
     }
+    
+    //Function for shield for troll
 func trollshield() {
         if playermana >= 10 {
             print("You raise a shield and block the Troll's attack!")
@@ -362,10 +380,7 @@ func trollshield() {
         }
     }
     
-func randomBool() -> Bool {
-        return arc4random_uniform(2) == 0
-    }
-    
+    //Function for scanning the golem's Vital
 func scan() {
         print("The golem has \(golemHealth) HP remaining.")
     }
