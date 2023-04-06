@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		040A1A4F29C40628003B6B27 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A4E29C40628003B6B27 /* main.swift */; };
+		040A1A5829DD6F25003B6B27 /* creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A5729DD6F25003B6B27 /* creature.swift */; };
+		040A1A5A29DD70A0003B6B27 /* combat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A5929DD70A0003B6B27 /* combat.swift */; };
+		040A1A5C29DD899C003B6B27 /* hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A5B29DD899C003B6B27 /* hero.swift */; };
+		040A1A5E29DECD2B003B6B27 /* potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1A5D29DECD2B003B6B27 /* potion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		040A1A4B29C40628003B6B27 /* 0706012110027-NickDevano-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110027-NickDevano-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040A1A4E29C40628003B6B27 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		040A1A5729DD6F25003B6B27 /* creature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = creature.swift; sourceTree = "<group>"; };
+		040A1A5929DD70A0003B6B27 /* combat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = combat.swift; sourceTree = "<group>"; };
+		040A1A5B29DD899C003B6B27 /* hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hero.swift; sourceTree = "<group>"; };
+		040A1A5D29DECD2B003B6B27 /* potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				040A1A4E29C40628003B6B27 /* main.swift */,
+				040A1A5729DD6F25003B6B27 /* creature.swift */,
+				040A1A5929DD70A0003B6B27 /* combat.swift */,
+				040A1A5B29DD899C003B6B27 /* hero.swift */,
+				040A1A5D29DECD2B003B6B27 /* potion.swift */,
 			);
 			path = "0706012110027-NickDevano-AFL1";
 			sourceTree = "<group>";
@@ -120,7 +132,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040A1A5E29DECD2B003B6B27 /* potion.swift in Sources */,
+				040A1A5829DD6F25003B6B27 /* creature.swift in Sources */,
 				040A1A4F29C40628003B6B27 /* main.swift in Sources */,
+				040A1A5A29DD70A0003B6B27 /* combat.swift in Sources */,
+				040A1A5C29DD899C003B6B27 /* hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

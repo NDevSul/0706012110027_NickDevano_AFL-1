@@ -7,16 +7,19 @@
 
 import Foundation
 
-var playerhealth = 100
-var playermana = 50
-var potion = 20
-var golemattack = 20
-var manapotion = 5
-var trollattack = 10
-let creatureHealth = ["troll": 200, "golem": 1000]
-var trollHealth = creatureHealth["troll"] ?? 0
-var golemHealth = creatureHealth["golem"] ?? 0
 
+var troll = Troll()
+var golem = Golem()
+var player = Player(name: "",Health: 100,mana: 50,Damage: 20)
+var Inventory1 = Potion(potionName: "Health potion", potion: 20)
+var Inventory2 = Elixir(potionName: "Mana potion", elixir: 5)
+var physicTroll = PhysicalAttackTroll()
+var physicGolem = PhysicalAttackGolem()
+var meteorgolem = MeteorGolem()
+var meteortroll = MeteorTroll()
+var shield = Shield()
+
+//Opening Story (Intro)
 let openingstory : String = "Welcome to a world of magic 🧙🏿‍♂️\nYou have been chosen to embark on an epic journey as a young wizard  on the path to becoming a master of the arcane arts. Your adventure will take you through forests 🌲, Mountains 🗻, and dungeon 🏰, where you will face challenges, make allies, and fight enemies \nPress [Return] to continue : "
 
 for _ in 1... {
@@ -29,6 +32,7 @@ for _ in 1... {
     }
 }
 
+//Naming Your wizard
 print("What is your name Young wizard?")
 
 var Nama: String?
@@ -44,25 +48,26 @@ if Nama == "" {
     Nama = "Guest"
 }
 
-print("Nice to meet you, \(Nama!)")
-starting()
+    print("Nice to meet you, \(Nama!)")
+    starting()
 
-
+//Function after inputing the name
 func starting() {
     
     print("""
-From here, you can...
-[C]heck your health and stats
-[H]eal your wounds with potion
-
-Or.. you can choose where you want to go
-
-[F]orest or trolls
-[M]ountain of golem
-[Q]uit the game
-
-Your choice young wizard.. :
-""")
+        From here, you can...
+        [C]heck your health and stats
+        [H]eal your wounds with potion
+        [E]lixir regeneration with potion
+        
+        Or.. you can choose where you want to go
+        
+        [F]orest or trolls
+        [M]ountain of golem
+        [Q]uit the game
+        
+        Your choice young wizard.. :
+        """)
     var Run = true
     
     while Run {
@@ -72,6 +77,8 @@ Your choice young wizard.. :
             playerstat()
         case "h":
             healingscreen()
+        case "e":
+            MPpotion()
         case "f":
             print("You are entering the forest ")
             forest()
@@ -87,161 +94,25 @@ Your choice young wizard.. :
         }
     }
     
-    
-    // Forest
-    func forest(){
-        var forestchoice = ""
-        print( """
- As  you enter the forest, you feel a sense of unease wash over you. Suddenly, you hear the sound of twigs snapping behind you, you quickly spin around, and find a Troll emerging from the shadows.
- """)
-        
-        while playerhealth > 0 || trollHealth > 0 || forestchoice != "6" {
-            
-            print("""
- 😈 Troll name : Jumbo Troll
- 😈 Health : \(trollHealth)
- 
- Choose your action :
- [1] Physical attack. No mana required. Deal 5pt Damage
- [2] Meteor. use 15pt of MP. Deal 50pt of damage
- [3] Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
- 
- [4] Use potion to heal wound
- [5] Scan enemy's vital
- [6] Use Mana Potion
- [7] Flee from battle
- 
- Whats your choice
- """)
-            forestchoice = readLine()!
-            if forestchoice == "1" {
-                physicalAttack()
-            }else if forestchoice == "2"
-            {
-                summonMeteor()
-            }else if forestchoice == "3"{
-                trollshield()
-            }else if forestchoice == "4"{
-                if potion <= 0{
-                    print("You dont have any potions")
-                }else {
-                    playerhealth += 20
-                    potion -= 1
-                }
-            }else if forestchoice == "5"{
-                print("Troll's Health = \(trollHealth)")
-            }else if forestchoice == "6"{
-                if manapotion <= 0{
-                    print("You dont have any Mana Potions")
-                }else {
-                    playermana += 10
-                    manapotion -= 1
-                }
-            }else if forestchoice == "7"{
-                flee()
-            }
-            print("The troll attacks you!")
-            playerhealth -= trollattack
-            if trollHealth <= 0 {
-                print("You defeated the Troll!")
-                trollHealth = (trollHealth*0) + 200
-                break
-            }else if playerhealth <= 0 {
-                print("Sadly you lost the battle young wizard")
-                playerhealth = (playerhealth*0) + 100
-                break
-            }
-        }}
-    
-    
-    //mountain
-    func mountain(){
-        if playerhealth <= 0 {
-            
-        }
-        var mountainchoice = ""
-        print("""
-As you make your way through the rugged mountain terrain, you can feel the chill of the wind bitting at your skin. suddenly, you hear a sound that makes you freeze in your tracks.That's when you see it - a massive, snarling
-Golem emerging from the shadows.
-""")
-        while playerhealth > 0 || golemHealth > 0 || mountainchoice != "6" {
-            print("""
- 😈 Golem name : Hugging Golem
- 😈 Health : \(golemHealth)
- 
- Choose your action :
- [1] Physical attack. No mana required. Deal 5pt Damage
- [2] Meteor. use 15pt of MP. Deal 50pt of damage
- [3] Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
- 
- [4] Use potion to heal wound
- [5] Scan enemy's vital
- [6] Use Mana potion
- [7] Flee from battle
- 
- Whats your choice
-""")
-            mountainchoice = readLine()!
-            if mountainchoice == "1" {
-                GolemPhysicalAttack()
-            }else if mountainchoice == "2"
-            {
-                summonMeteor()
-            }else if mountainchoice == "3"{
-                //                golemshield()
-            }else if mountainchoice == "4"{
-                if potion <= 0{
-                    print("You dont have any potions")
-                }else {
-                    playerhealth += 20
-                    potion -= 1
-                }
-            }else if mountainchoice == "5"{
-                print("Golem's Health = \(golemHealth)")
-            }else if mountainchoice == "6"{
-                if manapotion <= 0{
-                    print("You dont have any Mana Potions")
-                }else {
-                    playermana += 10
-                    manapotion -= 1
-                }
-            }else if mountainchoice == "7"{
-                flee()
-            }
-            // Enemy attacks player
-            print("The golem attacks you!")
-            playerhealth -= golemattack
-            if golemHealth <= 0 {
-                print("You defeated the Golem!")
-                golemHealth = (golemHealth*0) + 100
-                break
-            }else if playerhealth <= 0 {
-                print("Sadly you lost the battle young wizard")
-                playerhealth = (playerhealth*0) + 100
-                break
-            }        }
-    }
-    
-    
     // Player Stat
     func  playerstat (){
         var playerstatchoice = ""
         repeat{
             print( """
-Player Name : \(Nama ?? "")
-HP : \(playerhealth)
-MP : \(playermana)
-Magic :
-- Physical attack. No mana required. Deal 5pt Damage
-- Meteor. use 15pt of MP. Deal 50pt of damage
-- Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
-
-Items :
-- Potion x\(potion). Heal 20pt of your HP.
-- Elixir x\(manapotion). Add 10pt of your MP
-
-Press [Return to go back]
-""")
+                Player Name : \(player.name)
+                HP : \(player.Health)
+                MP : \(player.mana)
+                Magic :
+                - Physical attack. No mana required. Deal 5pt Damage
+                - Meteor. use 15pt of MP. Deal 50pt of damage
+                - Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
+                
+                Items :
+                - Potion x\(Inventory1.potion). Heal 20pt of your HP.
+                - Elixir x\(Inventory2.elixir). Add 10pt of your MP
+                
+                Press [Return to go back]
+                """)
             playerstatchoice = readLine()!
             if playerstatchoice == "" {
                 starting()
@@ -253,27 +124,28 @@ Press [Return to go back]
     }
     
     
+    
+    
     //healing Screen
     func healingscreen(){
         var healingchoice = ""
         repeat{
             print("""
-Your HP is \(playerhealth)
-You Have \(potion)
-Are you sure you want to use a potion [Y/N]?
-""")
+                Your HP is \(player.Health)
+                You Have \(Inventory1.potion)
+                Are you sure you want to use a potion [Y/N]?
+                """)
             
             healingchoice = readLine()!
             if healingchoice.lowercased() == "n"{
                 starting()
             }else if healingchoice.lowercased() == "y"{
-                if potion <= 0 {
+                if Inventory1.potion <= 0 {
                     print("You dont have anymore potion")
-                    playerhealth -= 0
-                    potion -= 0
-                }else if potion >= 1 {
-                    playerhealth = playerhealth + 20
-                    potion = potion - 1
+                    player.Health -= 0
+                    Inventory1.potion -= 0
+                }else if Inventory1.potion >= 1 {
+                    Inventory1.usePotion(Hero: player)
                 }
             }
         }while healingchoice != ""
@@ -284,90 +156,175 @@ Are you sure you want to use a potion [Y/N]?
         var potionchoice = ""
         repeat{
             print("""
-Your MP is \(playermana)
-You Have \(manapotion)
-Are you sure you want to use a Mana Potion [Y/N]?
-""")
-            
+                Your MP is \(player.mana)
+                You Have \(Inventory2.elixir)
+                Are you sure you want to use a Mana Potion [Y/N]?
+                """)
             potionchoice = readLine()!
             if potionchoice.lowercased() == "n"{
                 starting()
             }else if potionchoice.lowercased() == "y"{
-                if manapotion <= 0 {
+                if Inventory2.elixir <= 0 {
                     print("You dont have anymore potion")
-                    playermana -= 0
-                    manapotion -= 0
-                }else if potion >= 1 {
-                    playermana = playermana + 10
-                    manapotion = manapotion - 1
+                    player.mana -= 0
+                    Inventory2.elixir -= 0
+                }else if Inventory2.elixir >= 1 {
+                    Inventory2.useElixir(Hero: player)
                 }
             }
         }while potionchoice != ""
     }
     
+    //forest
+    
+    func forest(){
+        var forestchoice = ""
+        print( """
+                 As  you enter the forest, you feel a sense of unease wash over you. Suddenly, you hear the sound of twigs snapping behind you, you quickly spin around, and find a Troll emerging from the shadows.
+                 """)
+        
+        while player.Health > 0 || troll.health > 0 || forestchoice != "6" {
+            
+            print("""
+                     😈 Troll name : Jumbo Troll
+                     😈 Health : \(troll.health)
+                     
+                     Choose your action :
+                     [1] Physical attack. No mana required. Deal 5pt Damage
+                     [2] Meteor. use 15pt of MP. Deal 50pt of damage
+                     [3] Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
+                     
+                     [4] Use potion to heal wound
+                     [5] Scan enemy's vital
+                     [6] Use Mana Potion
+                     [7] Flee from battle
+                     
+                     Whats your choice
+                     """)
+            forestchoice = readLine()!
+            if forestchoice == "1" {
+                physicTroll.physicalattacktroll()
+            }else if forestchoice == "2"
+            {
+                meteortroll.MeteorTroll()
+            }else if forestchoice == "3"{
+                shield.execute()
+            }else if forestchoice == "4"{
+                if Inventory1.potion <= 0{
+                    print("You dont have any potions")
+                }else {
+                    Inventory1.usePotion(Hero: player)
+                }
+            }else if forestchoice == "5"{
+                print("Troll's Health = \(troll.health)")
+                print("Troll's Damage = \(troll.attackDamage)")
+            }else if forestchoice == "6"{
+                if Inventory2.elixir <= 0{
+                    print("You dont have any Mana Potions")
+                }else {
+                    Inventory2.useElixir(Hero: player)
+                }
+            }else if forestchoice == "7"{
+                flee()
+            }
+            print("The troll attacks you!")
+            troll.attack(by: player)
+            if troll.health <= 0 {
+                print("You defeated the Troll!")
+                troll.health = (troll.health * 0) + 200
+                player.Health = (player.Health * 0) + 100
+                break
+            }else if player.Health <= 0 {
+                print("Sadly you lost the battle young wizard")
+                player.Health = (player.Health * 0) + 100
+                troll.health = (troll.health * 0) + 200
+                break
+            }
+        }}
+    
+    //mountain
+    func mountain(){
+        if player.Health <= 0 {
+            
+        }
+        var mountainchoice = ""
+        print("""
+                As you make your way through the rugged mountain terrain, you can feel the chill of the wind bitting at your skin. suddenly, you hear a sound that makes you freeze in your tracks.That's when you see it - a massive, snarling
+                Golem emerging from the shadows.
+                """)
+        while player.Health > 0 || golem.health > 0 || mountainchoice != "6" {
+            print("""
+                 😈 Golem name : Hugging Golem
+                 😈 Health : \(golem.health)
+                 
+                 Choose your action :
+                 [1] Physical attack. No mana required. Deal 5pt Damage
+                 [2] Meteor. use 15pt of MP. Deal 50pt of damage
+                 [3] Shield. use 10 pt of MP. Block enemy's attack in 1 turn.
+                 
+                 [4] Use potion to heal wound
+                 [5] Scan enemy's vital
+                 [6] Use Mana potion
+                 [7] Flee from battle
+                 
+                 Whats your choice
+                """)
+            mountainchoice = readLine()!
+            if mountainchoice == "1" {
+                physicGolem.physicalattackgolem()
+            }else if mountainchoice == "2"
+            {
+                meteorgolem.MeteorGolem()
+            }else if mountainchoice == "3"{
+                shield.execute()
+            }else if mountainchoice == "4"{
+                if Inventory1.potion <= 0{
+                    print("You dont have any potions")
+                }else {
+                    Inventory1.usePotion(Hero: player)
+                }
+            }else if mountainchoice == "5"{
+                print("Golem's Health = \(golem.health)")
+                print("Golem's Damage = \(golem.attackDamage)")
+            }else if mountainchoice == "6"{
+                if Inventory2.elixir <= 0{
+                    print("You dont have any Mana Potions")
+                }else {
+                    Inventory2.useElixir(Hero: player)
+                }
+            }else if mountainchoice == "7"{
+                flee()
+            }
+            // Enemy attacks player
+            print("The golem attacks you!")
+            golem.attack(by: player)
+            if golem.health <= 0 {
+                print("You defeated the Golem!")
+                golem.health = (golem.health*0) + 100
+                player.Health = (player.Health*0) + 100
+                break
+            }else if player.Health <= 0 {
+                print("Sadly you lost the battle young wizard")
+                player.Health = (player.Health*0) + 100
+                golem.health = (golem.health*0) + 100
+                break
+            }        }
+    }
     
     
     //Flee from the battle
     func flee(){
         print("""
-You feel like if you dont escape soon, you wont be able to continue your fight.
-      You look around frantically, searching for a way out. You sprint  towards an exit, your heart pounding in your chest
-
-You're safe now, for now
-Press [return] to continue
-""")
+            You feel like if you dont escape soon, you wont be able to continue your fight.
+                  You look around frantically, searching for a way out. You sprint  towards an exit, your heart pounding in your chest
+            
+            You're safe now, for now
+            Press [return] to continue
+            """)
         let fleechoice = ""
         if fleechoice == ""{
             starting()
         }
     }
-    
-    
-    func physicalAttack() {
-        trollHealth -= 5
-        print("You hit the troll for 5 damage!")
-    }
-    func GolemPhysicalAttack(){
-        golemHealth -= 5
-        print("You hit the Golem for 5 damage!")
-    }
-    
-    func summonMeteor() {
-        if playermana >= 15 {
-            trollHealth -= 50
-            playermana -= 15
-            print("You summoned a meteor and hit the enemy for 50 damage!")
-        } else {
-            print("You don't have enough mana to use this move.")
-        }
-    }
-    
-    func golemshield() {
-        if playermana >= 10 {
-            print("You raise a shield and block the golem's attack!")
-            playermana -= 10
-            playerhealth = playerhealth + (golemattack*2)
-            
-        } else {
-            print("You don't have enough mana to use this move.")
-        }
-    }
-    func trollshield() {
-        if playermana >= 10 {
-            print("You raise a shield and block the Troll's attack!")
-            playermana -= 10
-            playerhealth = playerhealth + (trollattack*2)
-            
-        } else {
-            print("You don't have enough mana to use this move.")
-        }
-    }
-    
-    func randomBool() -> Bool {
-        return arc4random_uniform(2) == 0
-    }
-    
-    func scan() {
-        print("The golem has \(golemHealth) HP remaining.")
-    }
 }
+
